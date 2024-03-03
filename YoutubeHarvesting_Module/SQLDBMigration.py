@@ -64,10 +64,11 @@ class SQLDBMigration:
                 caption_status = str(video_information_list[getvideo][0]['caption_status'])
                 playlist_id = video_information_list[getvideo][0]['playlist_id']
                 playlist_id_str =  str(playlist_id) #', '.join(map(str, playlist_id))
+                channel_id = video_information_list['channel_id']
 
-                video_sql_query = "insert into video(video_id, playlist_id, video_name, video_description, publised_date, view_count, like_count, dislike_count, favorite_count, comment_count, duration, thumbnail, caption_status) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                video_sql_query = "insert into video(video_id, playlist_id, video_name, video_description, publised_date, view_count, like_count, dislike_count, favorite_count, comment_count, duration, thumbnail, caption_status, channel_id) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 video_sql_data = [
-                (Video_Id, playlist_id_str, Video_Name, Video_Description, published_date, view_count, Likes, Dislikes, favorite_count, comment_count, duration, thumbnail, caption_status)
+                (Video_Id, playlist_id_str, Video_Name, Video_Description, published_date, view_count, Likes, Dislikes, favorite_count, comment_count, duration, thumbnail, caption_status,channel_id )
                 ]
 
                 mycursor.executemany(video_sql_query,video_sql_data)
