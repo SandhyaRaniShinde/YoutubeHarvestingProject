@@ -1,10 +1,13 @@
 # Global Modules Import
 from pymongo import MongoClient
+from Utilities.APIStaticData import EnvironmentReader
 
 class FetchMongoDB:
 
     def __init__(self) -> None:
-        self.connection = MongoClient("mongodb+srv://sandhyaranishinde:8686542162@cluster0.vu6kqnp.mongodb.net/")
+        env_reader = EnvironmentReader()
+        server_pass = env_reader.get_specific_variable('serverpass')
+        self.connection = MongoClient(f"mongodb+srv://sandhyaranishinde:{server_pass}@cluster0.vu6kqnp.mongodb.net/")
         self.db = self.connection['YoutubeDataHarvesting_Project1']
         self.element = self.db['channel_information']
 

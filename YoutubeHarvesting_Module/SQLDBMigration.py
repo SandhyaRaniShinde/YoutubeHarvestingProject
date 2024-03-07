@@ -3,14 +3,17 @@ import time
 import mysql.connector
 from datetime import datetime
 import isodate
-
+from Utilities.APIStaticData import EnvironmentReader
+ 
 
 class SQLDBMigration:
     def __init__(self, channel_data) -> None:
         self.video_information_list = channel_data
     
     def sqldbmigration(self):
-        connection = mysql.connector.connect(host="localhost",user="root",password="8686542162",database="youtubeDataHarvesting")
+        env_reader = EnvironmentReader()
+        server_pass = env_reader.get_specific_variable('SERVERPASS')
+        connection = mysql.connector.connect(host="localhost",user="root",password=server_pass,database="youtubeDataHarvesting")
         mycursor = connection.cursor()
         video_information_list = self.video_information_list
         

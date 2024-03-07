@@ -1,13 +1,16 @@
 # Global Modules Import
 import mysql.connector
 import pandas as pd
+from Utilities.APIStaticData import EnvironmentReader
 
 class SQLQuery:
     def __init__(self, Option) -> None:
         self.option = Option
 
     def sqlquery(self):
-        connection = mysql.connector.connect(host="localhost",user="root",password="8686542162",database="youtubeDataHarvesting")
+        env_reader = EnvironmentReader()
+        server_pass = env_reader.get_specific_variable('SERVERPASS')
+        connection = mysql.connector.connect(host="localhost",user="root",password=server_pass,database="youtubeDataHarvesting")
         #mycursor = connection.cursor()
 
         match self.option:
