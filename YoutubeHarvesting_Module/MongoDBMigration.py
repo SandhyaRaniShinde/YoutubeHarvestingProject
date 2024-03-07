@@ -11,6 +11,7 @@ class MongoDBMigration:
             db = connection['YoutubeDataHarvesting_Project1']
             element = db['channel_information']
             element.insert_one(self.channel_data)
-            return "Channel data is migrated to Mongo DB"
+            latest_document = element.find_one({}, sort=[("_id", -1)])
+            return latest_document
         except Exception as e:
             return f"Error Migrating data to Mongo DB: {str(e)}"

@@ -108,4 +108,4 @@ class SQLDBMigration:
             except Exception as e:
                 print(f"Error fetching comments data for video with index {video_id}: {str(e)}")
         
-        return "Channel data is migrated to SQL DB"
+        return "Channel data is migrated."
