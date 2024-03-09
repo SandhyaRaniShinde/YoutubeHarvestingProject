@@ -1,8 +1,10 @@
+'''This code is for Fetching channel_Name from MongoDB'''
 # Global Modules Import
-from pymongo import MongoClient
+
+from pymongo import MongoClient 
 from Utilities.APIStaticData import EnvironmentReader
 
-class FetchMongoDB:
+class FetchMongoDB: #defines class name
 
     def __init__(self) -> None:
         env_reader = EnvironmentReader()
@@ -26,8 +28,3 @@ class FetchMongoDB:
         channel_doc = self.element.find_one({"channel_name": channelName}, sort=[("_id", -1)])
         self.connection.close()
         return channel_doc
-
-        
-
-        
-        

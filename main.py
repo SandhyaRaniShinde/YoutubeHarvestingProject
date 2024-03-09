@@ -1,7 +1,7 @@
 # Global Modules Import
-import streamlit as st
-from pprint import pprint
-import json
+import streamlit as st #web application
+from pprint import pprint #pretty printing data structures
+import json 
 
 # Local Modules Import
 from YoutubeHarvesting_Module.YoutubeScrapper import YoutubeScrapper
@@ -16,16 +16,18 @@ def main():
     if 'youtube_channel_data' not in st.session_state:
         st.session_state.youtube_channel_data = {}
 
+    #page configuration
     st.set_page_config(
         page_title="Youtube Data Harvesting Project",
         page_icon="👋",
     )
-
+    #adds header
     st.markdown('# Youtube Data Harvesting Project')
     
     # Sidebar
     option = st.sidebar.radio("Select an Option", ["Fetch Channel Data", "Channel Name", "Migrate Channel data", "Query Data"])
 
+    #option handling
     if option == "Fetch Channel Data":
         # Fetch Channel Data
         channel_id = st.sidebar.text_input('Enter the Youtube Channel Id')
@@ -98,8 +100,5 @@ def main():
         if query_option:
             st.write(mongodbdata.fetchMongoDBData(query_option))
         
-
-
-
 if __name__ == "__main__":
     main()
